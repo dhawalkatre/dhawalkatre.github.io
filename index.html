@@ -28,6 +28,12 @@
         .tab-btn.active { color: #2563eb; background: #eff6ff; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #2563eb; }
 
+        /* Modal Styles */
+        #project-modal { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        #project-modal.active { display: flex; opacity: 1; }
+        .modal-content { transform: scale(0.95); transition: transform 0.3s ease; }
+        #project-modal.active .modal-content { transform: scale(1); }
+
         /* CAD Viewer Styles */
         .cad-viewport {
             width: 100%;
@@ -50,45 +56,6 @@
         .cad-reset-btn svg { transition: transform 0.3s ease; }
 
         /* Infinite Logo Scroll Animation */
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 5)); }
-        }
-        /* .logo-slider {
-            display: flex;
-            width: calc(250px * 10);
-            animation: scroll 30s linear infinite;
-        }
-        .logo-slide {
-            width: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 40px;
-        }
-        .logo-track-mask {
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        } */
-        .logo-slider {
-            display: flex;
-            width: max-content;
-            gap: 100px; /* Fixed gap between logos */
-            padding-left: 100px; /* Match gap for seamless loop */
-            animation: scroll 25s linear infinite;
-        }
-        .logo-slide {
-            flex-shrink: 0;
-            white-space: nowrap; /* Ensures name stays in one line */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-track-mask {
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-    </style>
     </style>
 </head>
 <body class="bg-slate-300 text-slate-900 font-sans selection:bg-blue-100">
@@ -143,51 +110,41 @@
     </header>
 
     <!-- Logo Carousel Section -->
-    <div class="py-8 bg-white overflow-hidden">
+    <div class="py-8 bg-white">
         <div class="max-w-3xl mx-auto px-6 mb-8">
             <p class="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400">Collaborated with industry leaders & research institutes</p>
         </div>
-        <div class="logo-track-mask relative">
-            <div class="logo-slider">
-                <!-- Set 1 -->
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">RWTH</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Ecogenium</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">MERCEDES-BENZ</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Voltfang</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Bajaj</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Polyset</span>
-                </div>
-                <!-- Set 2 (Duplicate for seamless loop) -->
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">RWTH</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Ecogenium</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">MERCEDES-BENZ</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Voltfang</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Bajaj</span>
-                </div>
-                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Polyset</span>
-                </div>
+        <div class="px-16 grid md:grid-cols-6 justify-center max-w-8xl gap-0 mx-auto">
+                
+            <div class="grid md:grid-cols-1 justify-items-center">
+                <img src="RWTH_logo.png" alt="RWTH Aachen Logo" class="h-8">
+                <div class="py-2 px-2 rounded-xl text-center text-m text-gray-500">RWTH Aachen</div>
             </div>
+            <div class="grid md:grid-cols-1 justify-items-center ">
+                <img src="ecogenium_logo.png" alt="RWTH Aachen Logo" class="h-8">
+                <div class="py-2 px-2 rounded-xl text-center text-m text-gray-500">Ecogenium e.V.</div>
+            </div>
+            <div class="grid md:grid-cols-1 justify-items-center">
+                <img src="mercedes_logo.png" alt="RWTH Aachen Logo" class="h-9">
+                <div class="py-2 px-2 rounded-xl text-center text-m text-gray-500">Mercedes Benz</div>
+            </div>
+            <div class="grid md:grid-cols-1 justify-items-center">
+                <img src="Voltfang_logo.png" alt="RWTH Aachen Logo" class="h-8">
+                <div class="py-2 px-2 rounded-xl text-center text-m text-gray-500">Voltfang GmbH</div>
+            </div>
+            <div class="grid md:grid-cols-1 justify-items-center">
+                <img src="bajaj_logo.png" alt="RWTH Aachen Logo" class="h-8">
+                <div class="py-2 px-2 rounded-xl text-center text-m text-gray-500">Bajaj Auto</div>
+            </div>
+            <div class="grid md:grid-cols-1 justify-items-center">
+                <img src="PPI_logo.png" alt="RWTH Aachen Logo" class="h-8">
+                <div class="py-2 px-2 rounded-xl text-center text-m text-gray-500">Polyset</div>
+            </div>
+            
+            
+            
+            
+            
         </div>
     </div>
 
@@ -225,14 +182,14 @@
                             <p class="text-sm text-slate-500">CAD, structural design, lightweight design, GD&T</p>
                         </div>
                     </a>
-                    <a href="#projects" class="flex gap-4 p-4 rounded-xl bg-slate-200 shadow-lg hover:bg-slate-100 hover:shadow-2xl transition-all hover:scale-[1.05]"">
+                    <a href="#projects" class="flex gap-4 p-4 rounded-xl bg-slate-200 shadow-lg hover:bg-slate-100 hover:shadow-2xl transition-all hover:scale-[1.05]">
                         <i data-lucide="layers" class="text-blue-600"></i>
                         <div>
                             <h4 class="font-bold">Numerical Simulation</h4>
                             <p class="text-sm text-slate-500">Structural, Thermal, Fluid and Material simulations</p>
                         </div>
                     </a>
-                    <a href="#projects" class="flex gap-4 p-4 rounded-xl bg-slate-200 shadow-lg hover:bg-slate-100 hover:shadow-2xl transition-all hover:scale-[1.05]"">
+                    <a href="#projects" class="flex gap-4 p-4 rounded-xl bg-slate-200 shadow-lg hover:bg-slate-100 hover:shadow-2xl transition-all hover:scale-[1.05]">
                         <i data-lucide="layers" class="text-blue-600"></i>
                         <div>
                             <h4 class="font-bold">Scientific Machine Learning</h4>
@@ -345,399 +302,206 @@
         </div>
     </section>
 
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 bg-slate-500">
+    <!-- Projects List -->
+    <section id="projects" class="py-24 bg-gradient-to-t from-slate-800 to-slate-500">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center text-white">Technical Portfolio</h2>
-            
-            <!-- Folder Selection Tabs -->
-            <div class="flex flex-wrap justify-center items-center mb-12 bg-slate-100 p-1 rounded-2xl max-w-2xl mx-auto">
-                <button onclick="openFolder(event, 'simulation')" class="tab-btn px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                    <i data-lucide="activity" class="w-4 h-4"></i> Simulation Engineering
-                </button>
-                <button onclick="openFolder(event, 'design')" class="tab-btn active px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                    <i data-lucide="pencil-ruler" class="w-4 h-4"></i> Design Engineering
-                </button>
-                <button onclick="openFolder(event, 'sciml')" class="tab-btn px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                    <i data-lucide="brain-circuit" class="w-4 h-4"></i> Scientific ML
-                </button>
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold mb-12 text-center text-white">Technical Portfolio</h2>
             </div>
             
-            <!-- Design Folder Content -->
-            <div id="design" class="tab-content active space-y-12">
-                
-                <!-- PROJECT 1.1: MONOBLOCK WHEEL -->
-                <div class="bg-slate-900 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-stretch gap-12 overflow-hidden border border-slate-800">
-                        <div class="flex-1">
-                            <div class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">ECOGENIUM e.V.</div>
-                            <h3 class="text-3xl font-bold mb-4 leading-tight">Lightweight Monoblock Wheels</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">Designed and developed lightweight monoblock aluminium wheel for ultra-low resistance non-commercial research tyres</p>
-                        
-                            <div class="space-y-4 mb-10">
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Topology Optimization</span>
-                                        <span class="text-xs text-slate-500 italic">Lightweight design verified with advanced FEA Simulations to optimized for strength.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">DFMA Compliance</span>
-                                        <span class="text-xs text-slate-500 italic">Compact and Serviceable packaging design to integrate Brake, Motor and Transmission.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Cost Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">60% Cost Reduction in comparison to commercially available Carbon Fibre wheels, while being only 15% heavier.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4"></div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">FEA</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">ANSYS</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Siemens NX</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">DFM</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Drafting</div>
+            <div class="grid md:grid-cols-3 gap-8">
 
-                            </div>
+                <!-- Project 1 -->
+                <div class="group bg-slate-900 rounded-2xl p-6 hover:scale-[1.05] hover:shadow-xl grid md:grid-row-5 gap-5">
 
-                        </div>
-
-                    <div class="flex-1 relative bg-slate-950 rounded-2xl border border-white/5 aspect-square md:aspect-auto min-h-[350px] overflow-hidden shadow-inner">
-                        <!-- Make a unique ID for every viewer -->
-                        <div id="viewer-wheel" class="cad-viewport" data-model="wheels2.obj" data-mtl="wheels2.mtl"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
-                            <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-300"></i>
-                                <p class="text-[10px] text-slate-300">LMB: Rotate | RMB: Pan | Wheel: Zoom</p>
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <h3 class="font-bold text-xl text-white b-1">High Performace Monoblock Wheel</h3>
+                            <div class="flex flex-wrap gap-3 items-center">
+                                <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">ECOGENIUM e.V.</span>
+                                <p class="text-xs text-white">Designed and developed lightweight monoblock aluminium wheel for ultra-low resistance non-commercial research tyres</p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="flex items-center justify-center bg bg-white rounded-lg overflow-hidden">
+                        <img src="wheels.png" alt="Monoblock Wheel Assembly" class="h-48 object-cover rounded-lg">
+                    </div>
+
+                    <div>
+                        <button onclick="openProject('wheel')" class="gap-6 md:w-auto px-6 py-2.5 bg-slate-600 shadow-xl text-white rounded-lg hover:scale-[1.05] hover:bg-blue-600 text-xs font-bold flex items-center justify-center">
+                            Expand<i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="items-start gap-4">
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">GD&T</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">FEA</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">ANSYS</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">Siemens NX</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">DFM</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">Drafting</span>
+                    </div>
+
                 </div>
 
-                <!-- PROJECT 1.2: TRANSMISSION HUB -->
-                <div class="bg-slate-900 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-stretch gap-12 overflow-hidden border border-slate-800">
-                        <div class="flex-1">
-                            <div class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">ECOGENIUM e.V.</div>
-                            <h3 class="text-3xl font-bold mb-4 leading-tight">Hub-Trasmission-Upright Assembly</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">Designed and Developed an assembly of drive-train components like motor mount, upright, reduction gear, wheel hub to integrate Wheel, Brake, Motor and Suspension into a compact package.</p>
-                        
-                            <div class="space-y-4 mb-10">
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Component Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">60% reduction in component count simplifying manufacturing, assembly and maintenance.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Mass Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">Compact packaging reduced sprung mass by 40%.</span>
-                                    </div>
-                                </div>
-                            
-                                <div class="flex items-start gap-4"></div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">GD&T</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">FEA</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">ANSYS</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Siemens NX</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">DFM</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Drafting</div>
+                <!-- Project 2 -->
+                <div class="group bg-slate-900 rounded-2xl p-6 hover:scale-[1.05] hover:shadow-xl grid md:grid-row-5 gap-5">
 
-                            </div>
-
-                        </div>
-
-                    <div class="flex-1 relative bg-slate-950 rounded-2xl border border-white/5 aspect-square md:aspect-auto min-h-[350px] overflow-hidden shadow-inner">
-                        <!-- Make a unique ID for every viewer -->
-                        <div id="viewer-hub" class="cad-viewport" data-model="hub4.obj" data-mtl="hub4.mtl"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
-                            <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-300"></i>
-                                <p class="text-[10px] text-slate-300">LMB: Rotate | RMB: Pan | Wheel: Zoom</p>
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <h3 class="font-bold text-xl text-white b-1">Hub-Trasmission-Upright Assemblyl</h3>
+                            <div class="flex flex-wrap gap-3 items-center">
+                                <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">ECOGENIUM e.V.</span>
+                                <p class="text-xs text-white">Designed and developed lightweight monoblock aluminium wheel for ultra-low resistance non-commercial research tyres</p>
                             </div>
                         </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-center bg bg-white rounded-lg overflow-hidden">
+                        <img src="hub.png" alt="Monoblock Wheel Assembly" class="h-48 object-cover rounded-lg">
+                    </div>
+
+                    <div>
+                        <button onclick="openProject('hub')" class="gap-6 md:w-auto px-6 py-2.5 bg-slate-600 shadow-xl text-white rounded-lg hover:scale-[1.05] hover:bg-blue-600 text-xs font-bold flex items-center justify-center">
+                            Expand<i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="items-start gap-4">
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">GD&T</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">FEA</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">ANSYS</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">Siemens NX</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">DFM</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">Drafting</span>
+                    </div>
+
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group bg-slate-900 rounded-2xl p-6 hover:scale-[1.05] hover:shadow-xl grid md:grid-row-5 gap-5">
+
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <h3 class="font-bold text-xl text-white b-1">Hub-Trasmission-Upright Assembly</h3>
+                            <div class="flex flex-wrap gap-3 items-center">
+                                <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">ECOGENIUM e.V.</span>
+                                <p class="text-xs text-white">Designed and developed lightweight monoblock aluminium wheel for ultra-low resistance non-commercial research tyres</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center bg bg-white rounded-lg overflow-hidden">
+                        <img src="hub.png" alt="Monoblock Wheel Assembly" class="h-48 object-cover rounded-lg">
+                    </div>
+
+                    <div>
+                        <button onclick="openProject('wheel')" class="gap-6 md:w-auto px-6 py-2.5 bg-slate-600 shadow-xl text-white rounded-lg hover:scale-[1.05] hover:bg-blue-600 text-xs font-bold flex items-center justify-center">
+                            Expand<i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="items-start gap-4">
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">GD&T</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">FEA</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">ANSYS</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">Siemens NX</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">DFM</span>
+                        <span class="px-3 py-1 bg-blue-300 text-black rounded-full text-[10px] font-bold  mb-4">Drafting</span>
+                    </div>
+
+                </div> 
+
+                <!-- Project 4 -->
+                <div class="group bg-slate-900 rounded-2xl p-6 hover:scale-[1.05] hover:shadow-xl grid md:grid-row-5 gap-5">
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <h3 class="font-bold text-xl text-white b-1">Hub-Trasmission-Upright Assemblyl</h3>
+                            <div class="flex flex-wrap gap-3 items-center">
+                                <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">ECOGENIUM e.V.</span>
+                                <p class="text-xs text-white">Designed and developed lightweight monoblock aluminium wheel for ultra-low resistance non-commercial research tyres</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center bg bg-white rounded-lg overflow-hidden">
+                        <img src="wheels.png" alt="Monoblock Wheel Assembly" class="h-48 object-cover rounded-lg">
+                    </div>
+                    <div>
+                        <button onclick="openProject('wheel')" class="gap-6 md:w-auto px-6 py-2.5 bg-slate-600 shadow-xl text-white rounded-lg hover:scale-[1.05] hover:bg-blue-600 text-xs font-bold flex items-center justify-center">
+                            Expand<i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="group bg-slate-900 rounded-2xl p-6 hover:scale-[1.05] hover:shadow-xl grid md:grid-row-5 gap-5">
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <h3 class="font-bold text-xl text-white b-1">Hub-Trasmission-Upright Assemblyl</h3>
+                            <div class="flex flex-wrap gap-3 items-center">
+                                <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">ECOGENIUM e.V.</span>
+                                <p class="text-xs text-white">Designed and developed lightweight monoblock aluminium wheel for ultra-low resistance non-commercial research tyres</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center bg bg-white rounded-lg overflow-hidden">
+                        <img src="wheels.png" alt="Monoblock Wheel Assembly" class="h-48 object-cover rounded-lg">
+                    </div>
+                    <div>
+                        <button onclick="openProject('wheel')" class="gap-6 md:w-auto px-6 py-2.5 bg-slate-600 shadow-xl text-white rounded-lg hover:scale-[1.05] hover:bg-blue-600 text-xs font-bold flex items-center justify-center">
+                            Expand<i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
                     </div>
                 </div>
 
             </div>
-
-            <!-- Simulation Folder -->
-            <div id="simulation" class="tab-content space-y-12">
-                
-                <!-- PROJECT 2.1: Laser Welding Simulation -->
-                <div class="bg-slate-800 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-stretch gap-12 overflow-hidden border border-slate-800">
-                        <div class="flex-1">
-                            <div class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">MERCEDES-BENZ</div>
-                            <h3 class="text-3xl font-bold mb-4 leading-tight">Laser Welding Simulation</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules.</p>
-                        
-                            <div class="space-y-4 mb-10">
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Component Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">60% reduction in component count simplifying manufacturing, assembly and maintenance.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Mass Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">Compact packaging reduced sprung mass by 40%.</span>
-                                    </div>
-                                </div>
-                            
-                                <div class="flex items-start gap-4"></div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">LS-Dyna</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Multiphysics Simulation</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">ANSYS</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Simufact Welding</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Battery Production</div>
-
-                            </div>
-
-                        </div>
-
-                    <div class="flex-1 relative bg-slate-950 rounded-2xl border border-white/5 aspect-square md:aspect-auto min-h-[350px] overflow-hidden shadow-inner">
-                        <!-- Make a unique ID for every viewer -->
-                        <div id="viewer-laser" class="cad-viewport" data-model="wheels.obj" data-mtl="wheels.mtl"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
-                            <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-700"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 2.2: Adhesive Dispersion and Clamping Simulations -->
-                <div class="bg-slate-800 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-stretch gap-12 overflow-hidden border border-slate-800">
-                        <div class="flex-1">
-                            <div class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">MERCEDES-BENZ</div>
-                            <h3 class="text-3xl font-bold mb-4 leading-tight">Adhesive Dispersion and Clamping Simulations</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">Performed Explicit Dynamic Simulations (LS-DYNA) of adhesive application and pressing processes to evaluate flow behavior and process stability for vehicle assembly components.</p>
-                        
-                            <div class="space-y-4 mb-10">
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Component Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">60% reduction in component count simplifying manufacturing, assembly and maintenance.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Mass Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">Compact packaging reduced sprung mass by 40%.</span>
-                                    </div>
-                                </div>
-                            
-                                <div class="flex items-start gap-4"></div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">LS-Dyna</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">CFD</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">ANSYS</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Explicit Simulation</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Axial Motors</div>
-
-                            </div>
-
-                        </div>
-
-                    <div class="flex-1 relative bg-slate-950 rounded-2xl border border-white/5 aspect-square md:aspect-auto min-h-[350px] overflow-hidden shadow-inner">
-                        <!-- Make a unique ID for every viewer -->
-                        <div id="viewer-adhesive" class="cad-viewport" data-model="wheels.obj" data-mtl="wheels.mtl"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
-                            <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-700"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 2.2: Plasma Generation & Cleaning -->
-                <div class="bg-slate-800 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-stretch gap-12 overflow-hidden border border-slate-800">
-                        <div class="flex-1">
-                            <div class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">MERCEDES-BENZ</div>
-                            <h3 class="text-3xl font-bold mb-4 leading-tight">Plasma Generation & Cleaning</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">Benchmarked and executed Multiphysics Simulations (using COMSOL) of plasma cleaning processes for the analysis of fluid dynamics and thermal effects in pre-treatment.</p>
-                        
-                            <div class="space-y-4 mb-10">
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Component Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">60% reduction in component count simplifying manufacturing, assembly and maintenance.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Mass Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">Compact packaging reduced sprung mass by 40%.</span>
-                                    </div>
-                                </div>
-                            
-                                <div class="flex items-start gap-4"></div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">LS-Dyna</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">CFD</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">ANSYS</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Explicit Simulation</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Axial Motors</div>
-
-                            </div>
-
-                        </div>
-
-                    <div class="flex-1 relative bg-slate-950 rounded-2xl border border-white/5 aspect-square md:aspect-auto min-h-[350px] overflow-hidden shadow-inner">
-                        <!-- Make a unique ID for every viewer -->
-                        <div id="viewer-plasma" class="cad-viewport" data-model="wheels.obj" data-mtl="wheels.mtl"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
-                            <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-700"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-             <!-- SciML Folder -->
-            <div id="sciml" class="tab-content space-y-12">
-                
-                <!-- PROJECT 3.1: Bearing EHD PINNs -->
-                <div class="bg-slate-800 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-stretch gap-12 overflow-hidden border border-slate-800">
-                        <div class="flex-1">
-                            <div class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">MSE - RWTH Aachen</div>
-                            <h3 class="text-3xl font-bold mb-4 leading-tight">Bearing - EHD simulation using PINNs</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">Developed an integrated EHD-Simulation and Machine Learning framework for the modeling and real-time monitoring of complex tribological wear behavior in journal bearings.</p>
-                        
-                            <div class="space-y-4 mb-10">
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Component Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">60% reduction in component count simplifying manufacturing, assembly and maintenance.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Mass Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">Compact packaging reduced sprung mass by 40%.</span>
-                                    </div>
-                                </div>
-                            
-                                <div class="flex items-start gap-4"></div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">LS-Dyna</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">CFD</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">ANSYS</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Explicit Simulation</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Axial Motors</div>
-
-                            </div>
-
-                        </div>
-
-                    <div class="flex-1 relative bg-slate-950 rounded-2xl border border-white/5 aspect-square md:aspect-auto min-h-[350px] overflow-hidden shadow-inner">
-                        <!-- Make a unique ID for every viewer -->
-                        <div id="viewer-plasma" class="cad-viewport" data-model="wheels.obj" data-mtl="wheels.mtl"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
-                            <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-700"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 3.2: Battery CHT -->
-                <div class="bg-slate-800 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-stretch gap-12 overflow-hidden border border-slate-800">
-                        <div class="flex-1">
-                            <div class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">MERCEDES-BENZ</div>
-                            <h3 class="text-3xl font-bold mb-4 leading-tight">Plasma Generation & Cleaning</h3>
-                            <p class="text-slate-400 mb-8 leading-relaxed">Benchmarked and executed Multiphysics Simulations (using COMSOL) of plasma cleaning processes for the analysis of fluid dynamics and thermal effects in pre-treatment.</p>
-                        
-                            <div class="space-y-4 mb-10">
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Component Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">60% reduction in component count simplifying manufacturing, assembly and maintenance.</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="mt-1 w-5 h-5 rounded-full bg-blue-900/50 border border-blue-500/50 flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check" class="w-3 h-3 text-blue-200"></i>
-                                    </div>
-                                    <div>
-                                        <span class="block font-bold text-sm">Mass Reduction</span>
-                                        <span class="text-xs text-slate-500 italic">Compact packaging reduced sprung mass by 40%.</span>
-                                    </div>
-                                </div>
-                            
-                                <div class="flex items-start gap-4"></div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">LS-Dyna</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">CFD</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">ANSYS</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Explicit Simulation</div>
-                                <div class="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold  mb-4 tracking-widest">Axial Motors</div>
-
-                            </div>
-
-                        </div>
-
-                    <div class="flex-1 relative bg-slate-950 rounded-2xl border border-white/5 aspect-square md:aspect-auto min-h-[350px] overflow-hidden shadow-inner">
-                        <!-- Make a unique ID for every viewer -->
-                        <div id="viewer-plasma" class="cad-viewport" data-model="wheels.obj" data-mtl="wheels.mtl"></div>
-                        <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
-                            <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-700"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
+    <!-- Project Expansion Modal -->
+    <div id="project-modal" class="fixed inset-0 z-[100] items-center justify-center p-4 md:p-8 bg-slate-500/80 backdrop-blur-sm">
+        <div class="modal-content bg-slate-900 w-full max-w-6xl max-h-full overflow-hidden rounded-3xl shadow-2xl border border-white/10 flex flex-col lg:flex-row">
+            <!-- Details Side -->
+            <div class="lg:w-2/5 p-8 md:p-12 text-white overflow-y-auto">
+                <button onclick="closeModal()" class="mb-8 text-slate-400 hover:text-white flex items-center gap-2 text-sm font-medium transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Portfolio
+                </button>
+                <div id="modal-tag" class="inline-block px-3 py-1 bg-blue-600 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest">TAG</div>
+                <h3 id="modal-title" class="text-3xl md:text-4xl font-bold mb-4 leading-tight tracking-tight">Project Title</h3>
+                <p id="modal-desc" class="text-slate-400 mb-8 leading-relaxed italic text-lg">Detailed description of the project and its goals.</p>
+                
+                <div id="modal-bullets" class="space-y-4 mb-10">
+                    <!-- Bullets will be injected -->
+                </div>
+
+                <div class="pt-8 border-t border-white/10 flex gap-4">
+                    <div class="flex-1">
+                        <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">Software</p>
+                        <p id="modal-software" class="text-sm font-medium">Software Tools</p>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">Role</p>
+                        <p id="modal-role" class="text-sm font-medium">Your Role</p>
+                    </div>
+                </div>
+            </div>
+            <!-- CAD View Side -->
+            <div class="lg:w-3/5 bg-slate-950 relative min-h-[400px] lg:min-h-0 border-l border-white/5">
+                <div id="modal-viewer" class="cad-viewport"></div>
+                <!-- Interaction Tips -->
+                <div class="absolute bottom-6 left-6 text-white/40 pointer-events-none flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest">
+                    <span class="flex items-center gap-1.5"><i data-lucide="mouse-pointer-2" class="w-3 h-3"></i> Rotate</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="mouse" class="w-3 h-3"></i> Zoom</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Contact -->
-    <section id="contact" class="py-24 bg-slate-900 text-white">
+    <section id="contact" class="py-24 bg-gradient-to-t from-slate-900 to-slate-800 text-white">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
             <div>
                 <h2 class="text-4xl font-bold mb-8">Let's connect</h2>
@@ -761,198 +525,162 @@
         </div>
     </section>
 
-    <!-- <script>
-        lucide.createIcons();
-
-        // --- TAB LOGIC ---
-        function openFolder(evt, folderName) {
-            document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
-            document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-            document.getElementById(folderName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-            
-            // Re-sync all CAD viewers when tab changes (in case size changed)
-            Object.values(viewers).forEach(v => v.onResize());
-        }
-
-        // --- MULTI-CAD ENGINE ---
-        const viewers = {};
-
-        class CADViewer {
-            constructor(containerId) {
-                this.container = document.getElementById(containerId);
-                this.modelPath = this.container.getAttribute('data-model');
-                this.mtlPath = this.container.getAttribute('data-mtl');
-                this.part = null;
-                this.init();
-            }
-
-            init() {
-                const w = this.container.clientWidth;
-                const h = this.container.clientHeight;
-
-                this.scene = new THREE.Scene();
-                this.scene.background = new THREE.Color(0x0f172a);
-
-                this.camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 1000);
-                this.camera.position.set(3, 3, 3);
-                this.camera.lookAt(0, 0, 0);
-
-                this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-                this.renderer.setSize(w, h);
-                this.renderer.setPixelRatio(window.devicePixelRatio);
-                this.container.appendChild(this.renderer.domElement);
-
-                // Lighting
-                const hLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
-                this.scene.add(hLight);
-                const dLight = new THREE.DirectionalLight(0xffffff, 0.8);
-                dLight.position.set(5, 10, 7);
-                this.scene.add(dLight);
-
-                // Grid
-                const grid = new THREE.GridHelper(10, 20, 0x1e293b, 0x1e293b);
-                grid.position.y = -1.5;
-                this.scene.add(grid);
-
-                // Load Model
-                this.loadModel();
-
-                // Events
-                this.setupInteractions();
-                this.animate();
-            }
-
-            loadModel() {
-                // If we don't have the files, we create a placeholder geometry
-                // In production, replace the loader logic with your actual asset hosting
-                const mtlLoader = new THREE.MTLLoader();
-                
-                // Placeholder if loading fails (since files aren't physically here in chat)
-                const createPlaceholder = () => {
-                    const geo = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-                    const mat = new THREE.MeshStandardMaterial({ color: 0x3b82f6, metalness: 0.7, roughness: 0.2 });
-                    this.part = new THREE.Mesh(geo, mat);
-                    this.scene.add(this.part);
-                };
-
-                // Real Loader (Attempt)
-                mtlLoader.load(this.mtlPath, (materials) => {
-                    materials.preload();
-                    const objLoader = new THREE.OBJLoader();
-                    objLoader.setMaterials(materials);
-                    objLoader.load(this.modelPath, (object) => {
-                        this.part = object;
-                        this.centerModel();
-                        this.scene.add(this.part);
-                    }, undefined, () => createPlaceholder());
-                }, undefined, () => createPlaceholder());
-            }
-
-            centerModel() {
-                if (!this.part) return;
-                const box = new THREE.Box3().setFromObject(this.part);
-                const center = box.getCenter(new THREE.Vector3());
-                const size = box.getSize(new THREE.Vector3());
-                this.part.position.sub(center);
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = 2.5 / maxDim;
-                this.part.scale.set(scale, scale, scale);
-            }
-
-            // setupInteractions() {
-            //     let isDragging = false;
-            //     let prevMouse = { x: 0, y: 0 };
-
-            //     this.container.addEventListener('mousedown', (e) => { isDragging = true; prevMouse = { x: e.offsetX, y: e.offsetY }; });
-            //     window.addEventListener('mouseup', () => { isDragging = false; });
-                
-            //     this.container.addEventListener('mousemove', (e) => {
-            //         if (isDragging && this.part) {
-            //             this.part.rotation.y += (e.offsetX - prevMouse.x) * 0.01;
-            //             this.part.rotation.x += (e.offsetY - prevMouse.y) * 0.01;
-            //             prevMouse = { x: e.offsetX, y: e.offsetY };
-            //         }
-            //     });
-
-            //     this.container.addEventListener('wheel', (e) => {
-            //         e.preventDefault();
-            //         this.camera.position.z = Math.max(3, Math.min(this.camera.position.z + e.deltaY * 0.01, 15));
-            //     }, { passive: false });
-            // }
-
-            setupInteractions() {
-                // OrbitControls: The standard for 3D Viewers
-                // Requires OrbitControls.js script included in head
-                this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-                
-                // Enable Damping (Inertia) for natural feel
-                this.controls.enableDamping = true;
-                this.controls.dampingFactor = 0.05;
-
-                // Screen Space Panning (Standard CAD behavior)
-                // True = Pan Up/Down moves camera Up/Down (not forward/back)
-                this.controls.screenSpacePanning = true;
-
-                // Zoom Limits
-                this.controls.minDistance = 2;
-                this.controls.maxDistance = 20;
-
-                // Auto Rotate (Idle animation)
-                this.controls.autoRotate = true;
-                this.controls.autoRotateSpeed = 2.0; // Speed of rotation
-            }
-
-
-            onResize() {
-                const w = this.container.clientWidth;
-                const h = this.container.clientHeight;
-                if(w === 0 || h === 0) return;
-                this.camera.aspect = w / h;
-                this.camera.updateProjectionMatrix();
-                this.renderer.setSize(w, h);
-            }
-
-            reset() {
-                if(this.part) this.part.rotation.set(0, 0, 0);
-                this.camera.position.set(4, 3, 6);
-            }
-
-            animate() {
-                requestAnimationFrame(() => this.animate());
-                if (this.part && !this.container.matches(':active')) {
-                    this.part.rotation.y += 0.003;
-                }
-                this.renderer.render(this.scene, this.camera);
-            }
-        }
-
-        // Initialize all viewers on page load
-        window.onload = () => {
-            document.querySelectorAll('.cad-viewport').forEach(div => {
-                viewers[div.id] = new CADViewer(div.id);
-            });
-        };
-
-        window.addEventListener('resize', () => {
-            Object.values(viewers).forEach(v => v.onResize());
-        });
-
-        window.addEventListener('resize', onWindowResize);
-        document.getElementById('reset-cad').addEventListener('click', () => {
-            if(part) {
-                part.rotation.set(0, 0, 0);
-                camera.position.set(3, 3, 5);
-            }
-        });
-
-        function resetCAD(id) {
-            if(viewers[id]) viewers[id].reset();
-        }
-    </script> -->
-
     <script>
         lucide.createIcons();
+
+        const projectData = {
+            wheel: {
+                title: "Monoblock Wheel Assembly",
+                tag: "ECOGENIUM e.V.",
+                desc: "Optimization of lightweight alloy wheels for unsprung mass reduction in hydrogen-powered vehicles.",
+                tagColor: "bg-blue-600",
+                bullets: [
+                    "Topology Optimization (40% Mass Reduction)",
+                    "Material: Al 7075-T6 Aerospace Grade Alloy",
+                    "Simulated Load Cases: Cornering & Impact"
+                ],
+                software: "Ansys Mechanical, SolidWorks",
+                role: "Design & Optimization Engineer",
+                model: "wheels2.obj",
+                mtl: "wheels2.mtl"
+            },
+            hub: {
+                title: "Transmission-Hub Assembly",
+                tag: "DRIVETRAIN RESEARCH",
+                desc: "Integrated gear carrier and hub subassembly designed for maximum torque density and longevity.",
+                tagColor: "bg-emerald-600",
+                bullets: [
+                    "DFMA Compliant Design for Serial Production",
+                    "FEA Verified Structural Integrity under Peak Loads",
+                    "Optimized Heat Dissipation Fins"
+                ],
+                software: "Siemens NX, Ansys Mechanical",
+                role: "Subsystem Design Lead",
+                model: "hub4.obj",
+                mtl: "hub4.mtl"
+            },
+            laser: {
+                title: "Laser Welding Simulation",
+                tag: "DRIVETRAIN RESEARCH",
+                desc: "Integrated gear carrier and hub subassembly designed for maximum torque density and longevity.",
+                tagColor: "bg-emerald-600",
+                bullets: [
+                    "DFMA Compliant Design for Serial Production",
+                    "FEA Verified Structural Integrity under Peak Loads",
+                    "Optimized Heat Dissipation Fins"
+                ],
+                software: "Siemens NX, Ansys Mechanical",
+                role: "Subsystem Design Lead",
+                model: "hub4.obj",
+                mtl: "hub4.mtl"
+            },
+            adhesive: {
+                title: "Adhesive Dispersion and Clamping Simulations",
+                tag: "DRIVETRAIN RESEARCH",
+                desc: "Integrated gear carrier and hub subassembly designed for maximum torque density and longevity.",
+                tagColor: "bg-emerald-600",
+                bullets: [
+                    "DFMA Compliant Design for Serial Production",
+                    "FEA Verified Structural Integrity under Peak Loads",
+                    "Optimized Heat Dissipation Fins"
+                ],
+                software: "Siemens NX, Ansys Mechanical",
+                role: "Subsystem Design Lead",
+                model: "hub4.obj",
+                mtl: "hub4.mtl"
+            },
+            plasma: {
+                title: "Plasma Generation & Cleaning",
+                tag: "DRIVETRAIN RESEARCH",
+                desc: "Integrated gear carrier and hub subassembly designed for maximum torque density and longevity.",
+                tagColor: "bg-emerald-600",
+                bullets: [
+                    "DFMA Compliant Design for Serial Production",
+                    "FEA Verified Structural Integrity under Peak Loads",
+                    "Optimized Heat Dissipation Fins"
+                ],
+                software: "Siemens NX, Ansys Mechanical",
+                role: "Subsystem Design Lead",
+                model: "hub4.obj",
+                mtl: "hub4.mtl"
+            },
+            bearing: {
+                title: "Bearing - EHD simulation using PINNs",
+                tag: "DRIVETRAIN RESEARCH",
+                desc: "Integrated gear carrier and hub subassembly designed for maximum torque density and longevity.",
+                tagColor: "bg-emerald-600",
+                bullets: [
+                    "DFMA Compliant Design for Serial Production",
+                    "FEA Verified Structural Integrity under Peak Loads",
+                    "Optimized Heat Dissipation Fins"
+                ],
+                software: "Siemens NX, Ansys Mechanical",
+                role: "Subsystem Design Lead",
+                model: "hub4.obj",
+                mtl: "hub4.mtl"
+            },
+            cht: {
+                title: "Battery CHT Simulation",
+                tag: "DRIVETRAIN RESEARCH",
+                desc: "Integrated gear carrier and hub subassembly designed for maximum torque density and longevity.",
+                tagColor: "bg-emerald-600",
+                bullets: [
+                    "DFMA Compliant Design for Serial Production",
+                    "FEA Verified Structural Integrity under Peak Loads",
+                    "Optimized Heat Dissipation Fins"
+                ],
+                software: "Siemens NX, Ansys Mechanical",
+                role: "Subsystem Design Lead",
+                model: "hub4.obj",
+                mtl: "hub4.mtl"
+            }
+
+        };
+
+        const modal = document.getElementById('project-modal');
+        let currentViewer = null;
+
+        function openProject(id) {
+            const data = projectData[id];
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-tag').innerText = data.tag;
+            document.getElementById('modal-tag').className = `inline-block px-3 py-1 text-white rounded-full text-[10px] font-bold uppercase mb-4 tracking-widest ${data.tagColor}`;
+            document.getElementById('modal-software').innerText = data.software;
+            document.getElementById('modal-role').innerText = data.role;
+            
+            const bulletsCont = document.getElementById('modal-bullets');
+            bulletsCont.innerHTML = data.bullets.map(b => `
+                <div class="flex items-center gap-3">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-white/40"></i>
+                    <span class="text-sm font-medium">${b}</span>
+                </div>
+            `).join('');
+            lucide.createIcons();
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Init 3D Viewer in Modal
+            if (currentViewer) {
+                currentViewer.cleanup();
+            }
+            currentViewer = new CADViewer('modal-viewer', data.model, data.mtl);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            if (currentViewer) {
+                currentViewer.cleanup();
+                currentViewer = null;
+            }
+        }
+
+        // Close modal on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
 
         // --- TAB LOGIC ---
         function openFolder(evt, folderName) {
@@ -968,122 +696,227 @@
         // --- MULTI-CAD ENGINE ---
         const viewers = {};
 
+        // class CADViewer {
+        //     constructor(containerId) {
+        //         this.container = document.getElementById(containerId);
+        //         this.modelPath = this.container.getAttribute('data-model');
+        //         this.mtlPath = this.container.getAttribute('data-mtl');
+        //         this.part = null;
+        //         this.controls = null;
+        //         this.init();
+        //     }
+
+        //     init() {
+        //         const w = this.container.clientWidth;
+        //         const h = this.container.clientHeight;
+
+        //         this.scene = new THREE.Scene();
+        //         this.scene.background = new THREE.Color(0x0f172a); // Match container
+
+        //         this.camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 1000);
+        //         this.camera.position.set(0, 0, 6);
+
+        //         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        //         this.renderer.setSize(w, h);
+        //         this.renderer.setPixelRatio(window.devicePixelRatio);
+        //         this.container.appendChild(this.renderer.domElement);
+
+        //         // Grid (Darker for technical look)
+        //         const grid = new THREE.GridHelper(10, 20, 0x334155, 0x1e293b);
+        //         grid.position.y = -1.5;
+        //         // this.scene.add(grid);
+
+        //         // Create Overlay UI
+        //         this.createUI();
+
+        //         // Load Model
+        //         this.loadModel();
+
+        //         // Events
+        //         this.setupInteractions();
+        //         this.animate();
+        //     }
+
+            
+        //     createUI() {
+        //         // Floating Reset Camera Button
+        //         const btn = document.createElement('button');
+        //         btn.className = 'cad-reset-btn absolute top-4 right-4 z-20 flex items-center justify-center w-10 h-10 bg-slate-800/60 hover:bg-blue-600/80 text-white rounded-lg backdrop-blur-md border border-white/10 shadow-xl transition-all active:scale-95 pointer-events-auto';
+        //         btn.innerHTML = `
+        //             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        //                 <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+        //                 <path d="M3 3v5h5"/>
+        //             </svg>
+        //         `;
+        //         btn.title = "Reset Viewport";
+        //         btn.onclick = (e) => {
+        //             e.stopPropagation();
+        //             this.reset();
+        //         };
+        //         this.container.appendChild(btn);
+        //     }
+
+        //     applyTechnicalStyle(obj) {
+        //         // This function applies the "Unshaded with Edges" style
+        //         obj.traverse((child) => {
+        //             if (child.isMesh) {
+        //                 // 1. Unshaded Base (Mask)
+        //                 // Using same color as background (0x0f172a) effectively hides
+        //                 // lines behind the object (Hidden Line Removal effect).
+        //                 // Or use a slightly lighter slate (0x1e293b) for a solid appearance.
+        //                 // Let's use 0x1e293b for a nice matte solid look.
+        //                 child.material = new THREE.MeshBasicMaterial({
+        //                     color: 0xffffff, 
+        //                     polygonOffset: true,
+        //                     polygonOffsetFactor: 1, // Push back slightly to let edges shine
+        //                     polygonOffsetUnits: 1
+        //                 });
+
+        //                 // 2. Edges (Wireframe)
+        //                 // Threshold angle 15 ensures we see sharp edges but not triangulation
+        //                 const geometry = new THREE.EdgesGeometry(child.geometry, 15);
+        //                 const material = new THREE.LineBasicMaterial({ color: 0x60a5fa }); // Blue-400
+        //                 const wireframe = new THREE.LineSegments(geometry, material);
+        //                 child.add(wireframe);
+        //             }
+        //         });
+        //     }
+
+        //     loadModel() {
+        //         const mtlLoader = new THREE.MTLLoader();
+                
+        //         const createPlaceholder = () => {
+        //             const geo = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+        //             // Standard mesh for logic
+        //             const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
+        //             this.part = mesh;
+                    
+        //             // Apply style
+        //             this.applyTechnicalStyle(this.part);
+                    
+        //             this.scene.add(this.part);
+        //         };
+
+        //         mtlLoader.load(this.mtlPath, (materials) => {
+        //             materials.preload();
+        //             const objLoader = new THREE.OBJLoader();
+        //             objLoader.setMaterials(materials);
+        //             objLoader.load(this.modelPath, (object) => {
+        //                 this.part = object;
+                        
+        //                 // Apply Technical Style immediately after load
+        //                 this.applyTechnicalStyle(this.part);
+                        
+        //                 this.centerModel();
+        //                 this.scene.add(this.part);
+        //             }, undefined, () => createPlaceholder());
+        //         }, undefined, () => createPlaceholder());
+        //     }
+
+        //     centerModel() {
+        //         if (!this.part) return;
+        //         const box = new THREE.Box3().setFromObject(this.part);
+        //         const center = box.getCenter(new THREE.Vector3());
+        //         const size = box.getSize(new THREE.Vector3());
+        //         this.part.position.sub(center);
+        //         const maxDim = Math.max(size.x, size.y, size.z);
+        //         const scale = 2.5 / maxDim;
+        //         this.part.scale.set(scale, scale, scale);
+        //     }
+
+        //     setupInteractions() {
+        //         // OrbitControls with Damping for CAD feel
+        //         this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+        //         this.controls.enableDamping = true;
+        //         this.controls.dampingFactor = 0.05;
+        //         this.controls.screenSpacePanning = true;
+        //         this.controls.minDistance = 1;
+        //         this.controls.maxDistance = 20;
+        //         this.controls.autoRotate = true;
+        //         this.controls.autoRotateSpeed = 3.0;
+        //     }
+
+        //     onResize() {
+        //         const w = this.container.clientWidth;
+        //         const h = this.container.clientHeight;
+        //         if(w === 0 || h === 0) return;
+        //         this.camera.aspect = w / h;
+        //         this.camera.updateProjectionMatrix();
+        //         this.renderer.setSize(w, h);
+        //     }
+
+        //     reset() {
+        //         if (this.controls) this.controls.reset();
+        //         this.camera.position.set(0, 0, 6);
+        //     }
+
+        //     animate() {
+        //         requestAnimationFrame(() => this.animate());
+        //         if (this.controls) this.controls.update();
+        //         this.renderer.render(this.scene, this.camera);
+        //     }
+        // }
+
         class CADViewer {
-            constructor(containerId) {
+            constructor(containerId, modelPath, mtlPath) {
                 this.container = document.getElementById(containerId);
-                this.modelPath = this.container.getAttribute('data-model');
-                this.mtlPath = this.container.getAttribute('data-mtl');
+                this.container.innerHTML = '';
+                this.modelPath = modelPath;
+                this.mtlPath = mtlPath;
                 this.part = null;
-                this.controls = null;
                 this.init();
             }
-
             init() {
                 const w = this.container.clientWidth;
                 const h = this.container.clientHeight;
-
                 this.scene = new THREE.Scene();
-                this.scene.background = new THREE.Color(0x0f172a); // Match container
-
+                this.scene.background = new THREE.Color(0x0f172a); 
                 this.camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 1000);
-                this.camera.position.set(0, 0, 6);
-
-                this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                this.camera.position.set(5, 4, 7);
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
                 this.renderer.setSize(w, h);
                 this.renderer.setPixelRatio(window.devicePixelRatio);
                 this.container.appendChild(this.renderer.domElement);
-
-                // Grid (Darker for technical look)
-                const grid = new THREE.GridHelper(10, 20, 0x334155, 0x1e293b);
+                
+                const grid = new THREE.GridHelper(10, 20, 0x1e293b, 0x1e293b);
                 grid.position.y = -1.5;
-                // this.scene.add(grid);
+                this.scene.add(grid);
 
-                // Create Overlay UI
-                this.createUI();
-
-                // Load Model
                 this.loadModel();
-
-                // Events
                 this.setupInteractions();
                 this.animate();
             }
-
-            createUI() {
-                // Floating Reset Camera Button
-                const btn = document.createElement('button');
-                btn.className = 'cad-reset-btn absolute top-4 right-4 z-20 flex items-center justify-center w-10 h-10 bg-slate-800/60 hover:bg-blue-600/80 text-white rounded-lg backdrop-blur-md border border-white/10 shadow-xl transition-all active:scale-95 pointer-events-auto';
-                btn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                        <path d="M3 3v5h5"/>
-                    </svg>
-                `;
-                btn.title = "Reset Viewport";
-                btn.onclick = (e) => {
-                    e.stopPropagation();
-                    this.reset();
-                };
-                this.container.appendChild(btn);
-            }
-
             applyTechnicalStyle(obj) {
-                // This function applies the "Unshaded with Edges" style
                 obj.traverse((child) => {
                     if (child.isMesh) {
-                        // 1. Unshaded Base (Mask)
-                        // Using same color as background (0x0f172a) effectively hides
-                        // lines behind the object (Hidden Line Removal effect).
-                        // Or use a slightly lighter slate (0x1e293b) for a solid appearance.
-                        // Let's use 0x1e293b for a nice matte solid look.
-                        child.material = new THREE.MeshBasicMaterial({
-                            color: 0xffffff, 
-                            polygonOffset: true,
-                            polygonOffsetFactor: 1, // Push back slightly to let edges shine
-                            polygonOffsetUnits: 1
-                        });
-
-                        // 2. Edges (Wireframe)
-                        // Threshold angle 15 ensures we see sharp edges but not triangulation
+                        child.material = new THREE.MeshBasicMaterial({ color: 0x1e293b, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
                         const geometry = new THREE.EdgesGeometry(child.geometry, 15);
-                        const material = new THREE.LineBasicMaterial({ color: 0x60a5fa }); // Blue-400
-                        const wireframe = new THREE.LineSegments(geometry, material);
-                        child.add(wireframe);
+                        const material = new THREE.LineBasicMaterial({ color: 0x3b82f6 }); 
+                        child.add(new THREE.LineSegments(geometry, material));
                     }
                 });
             }
-
             loadModel() {
                 const mtlLoader = new THREE.MTLLoader();
-                
                 const createPlaceholder = () => {
-                    const geo = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-                    // Standard mesh for logic
-                    const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
-                    this.part = mesh;
-                    
-                    // Apply style
+                    const geo = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+                    this.part = new THREE.Mesh(geo, new THREE.MeshBasicMaterial());
                     this.applyTechnicalStyle(this.part);
-                    
                     this.scene.add(this.part);
                 };
-
+                
                 mtlLoader.load(this.mtlPath, (materials) => {
                     materials.preload();
                     const objLoader = new THREE.OBJLoader();
                     objLoader.setMaterials(materials);
                     objLoader.load(this.modelPath, (object) => {
                         this.part = object;
-                        
-                        // Apply Technical Style immediately after load
                         this.applyTechnicalStyle(this.part);
-                        
                         this.centerModel();
                         this.scene.add(this.part);
                     }, undefined, () => createPlaceholder());
                 }, undefined, () => createPlaceholder());
             }
-
             centerModel() {
                 if (!this.part) return;
                 const box = new THREE.Box3().setFromObject(this.part);
@@ -1091,38 +924,21 @@
                 const size = box.getSize(new THREE.Vector3());
                 this.part.position.sub(center);
                 const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = 2.5 / maxDim;
+                const scale = 3.5 / maxDim;
                 this.part.scale.set(scale, scale, scale);
             }
-
             setupInteractions() {
-                // OrbitControls with Damping for CAD feel
                 this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
                 this.controls.enableDamping = true;
-                this.controls.dampingFactor = 0.05;
-                this.controls.screenSpacePanning = true;
-                this.controls.minDistance = 1;
-                this.controls.maxDistance = 20;
                 this.controls.autoRotate = true;
-                this.controls.autoRotateSpeed = 3.0;
+                this.controls.autoRotateSpeed = 1.0;
             }
-
-            onResize() {
-                const w = this.container.clientWidth;
-                const h = this.container.clientHeight;
-                if(w === 0 || h === 0) return;
-                this.camera.aspect = w / h;
-                this.camera.updateProjectionMatrix();
-                this.renderer.setSize(w, h);
+            cleanup() {
+                this.renderer.dispose();
+                this.container.innerHTML = '';
             }
-
-            reset() {
-                if (this.controls) this.controls.reset();
-                this.camera.position.set(0, 0, 6);
-            }
-
             animate() {
-                requestAnimationFrame(() => this.animate());
+                this.animationId = requestAnimationFrame(() => this.animate());
                 if (this.controls) this.controls.update();
                 this.renderer.render(this.scene, this.camera);
             }
