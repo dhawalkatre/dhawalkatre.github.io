@@ -44,6 +44,51 @@
         }
 
         canvas { display: block; }
+
+        /* CAD Reset Button Animation */
+        .cad-reset-btn:hover svg { transform: rotate(-90deg); }
+        .cad-reset-btn svg { transition: transform 0.3s ease; }
+
+        /* Infinite Logo Scroll Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 5)); }
+        }
+        /* .logo-slider {
+            display: flex;
+            width: calc(250px * 10);
+            animation: scroll 30s linear infinite;
+        }
+        .logo-slide {
+            width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+        }
+        .logo-track-mask {
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        } */
+        .logo-slider {
+            display: flex;
+            width: max-content;
+            gap: 100px; /* Fixed gap between logos */
+            padding-left: 100px; /* Match gap for seamless loop */
+            animation: scroll 25s linear infinite;
+        }
+        .logo-slide {
+            flex-shrink: 0;
+            white-space: nowrap; /* Ensures name stays in one line */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-track-mask {
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+    </style>
     </style>
 </head>
 <body class="bg-slate-300 text-slate-900 font-sans selection:bg-blue-100">
@@ -62,7 +107,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="pt-32 pb-20 px-6">
+    <header id="home" class="pt-32 pb-20 px-6 bg-gradient-to-t from-slate-100 to-slate-400">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
             <div class="flex-1 space-y-6">
                 <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider">
@@ -97,8 +142,57 @@
         </div>
     </header>
 
+    <!-- Logo Carousel Section -->
+    <div class="py-8 bg-white overflow-hidden">
+        <div class="max-w-3xl mx-auto px-6 mb-8">
+            <p class="text-center text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400">Collaborated with industry leaders & research institutes</p>
+        </div>
+        <div class="logo-track-mask relative">
+            <div class="logo-slider">
+                <!-- Set 1 -->
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">RWTH</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Ecogenium</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">MERCEDES-BENZ</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Voltfang</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Bajaj</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Polyset</span>
+                </div>
+                <!-- Set 2 (Duplicate for seamless loop) -->
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">RWTH</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Ecogenium</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">MERCEDES-BENZ</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Voltfang</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Bajaj</span>
+                </div>
+                <div class="logo-slide grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                    <span class="text-xl font-black text-slate-800 tracking-tighter italic uppercase">Polyset</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- About Section -->
-    <section id="about" class="py-24 bg-white">
+    <section id="about" class="py-24 bg-white bg-gradient-to-t from-slate-300 to-slate-100">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16">
                 <div class="space-y-5">
@@ -152,20 +246,20 @@
 
 
     <!-- Experience Section -->
-    <section id="experience" class="py-24 bg-gradient-to-t from-slate-500 to-slate-400">
+    <section id="experience" class="py-24 bg-gradient-to-t from-slate-500 to-slate-300">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold uppercase tracking-[0.2em] text-white mb-12">Work Experience</h2>
-            <div class="flex flex-wrap gap-6 md:gap-12 grid md:grid-cols-2">
+            <h2 class="text-4xl font-bold mb-12 text-center text-black">Work Experience</h2>
+            <div class="flex flex-wrap gap-6 md:gap-12 grid md:grid-cols-3">
 
                 <!-- EXPERIENCE 1: MERCEDES-BENZ -->
-                <div class="flex gap-4 p-6 rounded-xl bg-slate-400 shadow-xl">
-                    <div class="grid md:grid-cols-3 gap-4">
+                <div class="flex gap-4 p-6 rounded-xl bg-slate-600 shadow-xl">
+                    <div class="grid md:grid-cols-1 gap-4">
                         <div class="text-white space-y-2">
                             <h2 class="font-bold">MERCEDES-BENZ</h2>
                             <h3>Simulation Engineering Intern</h3>
                             <p class="text-xs italic">10/2025 - 04/2025</p>
                         </div>
-                        <div class="text-sm text-white space-y-2 col-span-2">   
+                        <div class="text-sm text-white space-y-2">   
                             <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
                             <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
                         </div>
@@ -173,14 +267,14 @@
                 </div>
 
                 <!-- EXPERIENCE 2: MSE RWTH -->
-                <div class="flex gap-4 p-4 rounded-xl bg-slate-500 shadow-2xl">
-                    <div class="grid md:grid-cols-3 gap-4">
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-600 shadow-2xl">
+                    <div class="grid md:grid-cols-1 gap-4">
                         <div class="text-white space-y-2">
                             <h2 class="font-bold">MSE RWTH</h2>
                             <h3>Simulation Engineering Intern</h3>
                             <p class="text-xs italic">10/2025 - 04/2025</p>
                         </div>
-                        <div class="text-sm text-white space-y-2 col-span-2">   
+                        <div class="text-sm text-white space-y-2">   
                             <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
                             <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
                         </div>
@@ -188,14 +282,14 @@
                 </div>
 
                 <!-- EXPERIENCE 3: Voltfang-->
-                <div class="flex gap-4 p-4 rounded-xl bg-slate-500 shadow-2xl">
-                    <div class="grid md:grid-cols-3 gap-4">
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-600 shadow-2xl">
+                    <div class="grid md:grid-cols-1 gap-4">
                         <div class="text-white space-y-2">
                             <h2 class="font-bold">VOLTFANG GmbH</h2>
                             <h3>Simulation Engineering Intern</h3>
                             <p class="text-xs italic">10/2025 - 04/2025</p>
                         </div>
-                        <div class="text-sm text-white space-y-2 col-span-2">   
+                        <div class="text-sm text-white space-y-2">   
                             <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
                             <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
                         </div>
@@ -203,20 +297,49 @@
                 </div>
 
                 <!-- EXPERIENCE 4: Ecogenium -->
-                <div class="flex gap-4 p-4 rounded-xl bg-slate-500 shadow-2xl">
-                    <div class="grid md:grid-cols-3 gap-4">
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-600 shadow-2xl">
+                    <div class="grid md:grid-cols-1 gap-4">
                         <div class="text-white space-y-2">
                             <h2 class="font-bold">ECOGENIUM e.V.</h2>
                             <h3>Simulation Engineering Intern</h3>
                             <p class="text-xs italic">10/2025 - 04/2025</p>
                         </div>
-                        <div class="text-sm text-white space-y-2 col-span-2">   
+                        <div class="text-sm text-white space-y-2">   
                             <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
                             <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- EXPERIENCE 5: Polyset Pipe -->
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-600 shadow-2xl">
+                    <div class="grid md:grid-cols-1 gap-4">
+                        <div class="text-white space-y-2">
+                            <h2 class="font-bold">POLYSET PIPE</h2>
+                            <h3>Simulation Engineering Intern</h3>
+                            <p class="text-xs italic">10/2025 - 04/2025</p>
+                        </div>
+                        <div class="text-sm text-white space-y-2">   
+                            <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
+                            <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- EXPERIENCE 6: Bajaj Auto -->
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-600 shadow-2xl">
+                    <div class="grid md:grid-cols-1 gap-4">
+                        <div class="text-white space-y-2">
+                            <h2 class="font-bold">BAJAJ AUTO</h2>
+                            <h3>Simulation Engineering Intern</h3>
+                            <p class="text-xs italic">10/2025 - 04/2025</p>
+                        </div>
+                        <div class="text-sm text-white space-y-2">   
+                            <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
+                            <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -226,10 +349,10 @@
     <!-- Projects Section -->
     <section id="projects" class="py-24 bg-slate-500">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center tracking-tight">Technical Portfolio</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center text-white">Technical Portfolio</h2>
             
             <!-- Folder Selection Tabs -->
-            <div class="flex flex-wrap justify-center items-center mb-12 bg-slate-100 p-1 rounded-2xl max-w-3xl mx-auto">
+            <div class="flex flex-wrap justify-center items-center mb-12 bg-slate-100 p-1 rounded-2xl max-w-2xl mx-auto">
                 <button onclick="openFolder(event, 'simulation')" class="tab-btn px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
                     <i data-lucide="activity" class="w-4 h-4"></i> Simulation Engineering
                 </button>
