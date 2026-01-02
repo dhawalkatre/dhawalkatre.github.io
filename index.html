@@ -98,35 +98,47 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="py-24 bg-slate-400">
+    <section id="about" class="py-24 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16">
-                <div>
-                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-2">
-                        <div class="w-8 h-1 bg-blue-600 rounded-full"></div> Profile
-                    </h2>
-                    <p class="text-lg text-slate-600 leading-relaxed italic">
-                    </p>
+                <div class="space-y-5">
+                    <h2 class="text-3xl font-bold mb-6 flex items-center text-black gap-2">Education</h2>
+                    <div class="flex gap-4 p-4 rounded-xl bg-slate-100 shadow-lg">
+                        <i data-lucide="book-open" class="text-blue-600"></i>
+                        <div>
+                            <h2 class="font-bold">RWTH Aachen, Germany</h2>
+                            <h4 class="font-bold">M.Sc. Computer Aided Mechanical Engineering</h4>
+                            <p class="text-sm text-slate-900 italic">2021 - 2025</p>
+                            <p class="text-sm text-slate-500">CAD, structural design, lightweight design, GD&T</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 rounded-xl bg-slate-100 shadow-lg">
+                        <i data-lucide="book-open" class="text-blue-600"></i>
+                        <div>
+                            <h2 class="font-bold">IIT Goa, India</h2>
+                            <h4 class="font-bold">B.Tech. Mechanical Engineering</h4>
+                            <p class="text-sm text-slate-900 italic">2016 - 2020</p>
+                            <p class="text-sm text-slate-500">CAD, structural design, lightweight design, GD&T</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="space-y-4">
-                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-2">
-                        <div class="w-8 h-1 bg-blue-600 rounded-full"></div> Core Expertise
-                    </h2>
-                    <a href="#projects" class="flex gap-4 p-4 rounded-xl border border-slate-100">
+                    <h2 class="text-3xl font-bold mb-6 flex items-center text-black gap-2">Core Competencies</h2>
+                    <a href="#projects" class="flex gap-4 p-4 rounded-xl bg-slate-200 shadow-lg hover:bg-slate-100 hover:shadow-2xl transition-all hover:scale-[1.05]">
                         <i data-lucide="cog" class="text-blue-600"></i>
                         <div>
                             <h4 class="font-bold">Design Engineering</h4>
                             <p class="text-sm text-slate-500">CAD, structural design, lightweight design, GD&T</p>
                         </div>
                     </a>
-                    <a href="#projects" class="flex gap-4 p-4 rounded-xl border border-slate-100">
+                    <a href="#projects" class="flex gap-4 p-4 rounded-xl bg-slate-200 shadow-lg hover:bg-slate-100 hover:shadow-2xl transition-all hover:scale-[1.05]"">
                         <i data-lucide="layers" class="text-blue-600"></i>
                         <div>
                             <h4 class="font-bold">Numerical Simulation</h4>
                             <p class="text-sm text-slate-500">Structural, Thermal, Fluid and Material simulations</p>
                         </div>
                     </a>
-                    <a href="#projects" class="flex gap-4 p-4 rounded-xl border border-slate-100">
+                    <a href="#projects" class="flex gap-4 p-4 rounded-xl bg-slate-200 shadow-lg hover:bg-slate-100 hover:shadow-2xl transition-all hover:scale-[1.05]"">
                         <i data-lucide="layers" class="text-blue-600"></i>
                         <div>
                             <h4 class="font-bold">Scientific Machine Learning</h4>
@@ -140,14 +152,72 @@
 
 
     <!-- Experience Section -->
-    <section id="experience" class="py-24 bg-slate-300 border-y border-slate-200 text-center">
+    <section id="experience" class="py-24 bg-gradient-to-t from-slate-500 to-slate-400">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-slate-400 mb-12">Industry Presence</h2>
-            <div class="flex flex-wrap justify-center gap-12 md:gap-24 opacity-60">
-                <div class="flex flex-col"><span class="text-2xl font-black">MERCEDES BENZ</span><span class="text-xs uppercase">Simulation Engineering</span></div>
-                <div class="flex flex-col"><span class="text-2xl font-black">RWTH</span><span class="text-xs uppercase">Scientific Machine Learning</span></div>
-                <div class="flex flex-col"><span class="text-2xl font-black">VOLTFANG</span><span class="text-xs uppercase">Battery System Design Engineering</span></div>
-                <div class="flex flex-col"><span class="text-2xl font-black">ECOGENIUM</span><span class="text-xs uppercase">Automotive Design Engineering</span></div>
+            <h2 class="text-3xl font-bold uppercase tracking-[0.2em] text-white mb-12">Work Experience</h2>
+            <div class="flex flex-wrap gap-6 md:gap-12 grid md:grid-cols-2">
+
+                <!-- EXPERIENCE 1: MERCEDES-BENZ -->
+                <div class="flex gap-4 p-6 rounded-xl bg-slate-400 shadow-xl">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="text-white space-y-2">
+                            <h2 class="font-bold">MERCEDES-BENZ</h2>
+                            <h3>Simulation Engineering Intern</h3>
+                            <p class="text-xs italic">10/2025 - 04/2025</p>
+                        </div>
+                        <div class="text-sm text-white space-y-2 col-span-2">   
+                            <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
+                            <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
+                        </div>
+                    </div>   
+                </div>
+
+                <!-- EXPERIENCE 2: MSE RWTH -->
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-500 shadow-2xl">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="text-white space-y-2">
+                            <h2 class="font-bold">MSE RWTH</h2>
+                            <h3>Simulation Engineering Intern</h3>
+                            <p class="text-xs italic">10/2025 - 04/2025</p>
+                        </div>
+                        <div class="text-sm text-white space-y-2 col-span-2">   
+                            <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
+                            <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE 3: Voltfang-->
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-500 shadow-2xl">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="text-white space-y-2">
+                            <h2 class="font-bold">VOLTFANG GmbH</h2>
+                            <h3>Simulation Engineering Intern</h3>
+                            <p class="text-xs italic">10/2025 - 04/2025</p>
+                        </div>
+                        <div class="text-sm text-white space-y-2 col-span-2">   
+                            <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
+                            <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE 4: Ecogenium -->
+                <div class="flex gap-4 p-4 rounded-xl bg-slate-500 shadow-2xl">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="text-white space-y-2">
+                            <h2 class="font-bold">ECOGENIUM e.V.</h2>
+                            <h3>Simulation Engineering Intern</h3>
+                            <p class="text-xs italic">10/2025 - 04/2025</p>
+                        </div>
+                        <div class="text-sm text-white space-y-2 col-span-2">   
+                            <p>Optimized Laser Welding processes through thermo-mechanical simulations (using LS-DYNA and Simufact Welding) focusing critical joining zones for EV Battery Modules. </p>
+                            <p>Conducted CFD modeling (using LS-DYNA) of Melt Pool Dynamics in laser welding, applying advanced material models and analyzing various material combinations.</p>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>
@@ -276,7 +346,8 @@
                         <div id="viewer-hub" class="cad-viewport" data-model="hub4.obj" data-mtl="hub4.mtl"></div>
                         <div class="absolute inset-x-0 bottom-0 p-4 cad-overlay">
                             <div class="flex justify-between items-end">
-                                <i data-lucide="box" class="w-5 h-5 text-slate-700"></i>
+                                <i data-lucide="box" class="w-5 h-5 text-slate-300"></i>
+                                <p class="text-[10px] text-slate-300">LMB: Rotate | RMB: Pan | Wheel: Zoom</p>
                             </div>
                         </div>
                     </div>
@@ -910,8 +981,7 @@
                 this.controls.minDistance = 1;
                 this.controls.maxDistance = 20;
                 this.controls.autoRotate = true;
-                this.controls.autoRotateSpeed = 2.0;
-                this.controls.screenSpacePanning = true;
+                this.controls.autoRotateSpeed = 3.0;
             }
 
             onResize() {
@@ -925,7 +995,7 @@
 
             reset() {
                 if (this.controls) this.controls.reset();
-                this.camera.position.set(4, 3, 6);
+                this.camera.position.set(0, 0, 6);
             }
 
             animate() {
@@ -950,5 +1020,4 @@
         }
     </script>
 </body>
-
 </html>
